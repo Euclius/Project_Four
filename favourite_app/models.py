@@ -7,7 +7,7 @@ class Supplier(models.Model):
     location = models.BooleanField(default=False, blank=True)
     description = models.TextField(blank=True)
     photo_url = models.CharField(max_length=400, blank=True)
-    why = models.TextField()
+    reason = models.TextField()
 
     def __str__(self):
         return self.title

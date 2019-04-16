@@ -15,4 +15,4 @@ class SupplierSerializer(serializers.ModelSerializer):
     products = ProductSerializer(many=True, read_only=True)
     class Meta:
         model = Supplier
-        fields = ('id', 'title', 'location', 'description', 'photo_url', 'why')
+        fields = ('id', 'title', 'location', 'description', 'photo_url', 'reason')
