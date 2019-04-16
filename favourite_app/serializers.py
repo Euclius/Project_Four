@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from .models import Supplier, Product
+from .models import Supplier, Product, Guru
+
+class GuruSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Guru
+        fields = ('id', 'name', 'brief_description', 'location', 'image_url', 'skill_set')
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -7,7 +12,8 @@ class ProductSerializer(serializers.ModelSerializer):
         fields =('id', 'name', 'picture_url', 'supplier')
 
 class SupplierSerializer(serializers.ModelSerializer):
-    suppliers = ProductSerializer(many=True, read_only=True)
+    products = ProductSerializer(many=True, read_only=True)
+    
     class Meta:
         model = Supplier
-        fields ('id', 'title', 'location', 'description', 'photo_url', 'why')
+        fields = ('id', 'title', 'location', 'description', 'photo_url', 'why')

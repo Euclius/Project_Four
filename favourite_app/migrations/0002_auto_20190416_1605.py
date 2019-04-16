@@ -26,10 +26,4 @@ class Migration(migrations.Migration):
             name='photo_url',
             field=models.CharField(blank=True, max_length=400),
         ),
-        migrations.AddField(
-            model_name='product',
-            name='guru',
-            field=models.ForeignKey(default='exit', on_delete=django.db.models.deletion.CASCADE, related_name='Gurus', to='favourite_app.Guru'),
-            preserve_default=False,
-        ),
     ]
