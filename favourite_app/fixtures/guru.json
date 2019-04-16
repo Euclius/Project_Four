@@ -1,0 +1,24 @@
+[
+    {
+      "model": "favourite_app.guru",
+      "pk": 1,
+      "fields": {
+        "name": "Cameron",
+        "brief_description": "a better hardware store to buy your wood",
+        "location": "False",
+        "image_url": "none",
+        "skill_set": "coding"
+      }
+    },
+    {
+        "model": "favourite_app.guru",
+        "pk": 2,
+        "fields": {
+            "name": "Joel",
+            "brief_description": "can usually be found at fellini's on howell mill",
+            "location": "False",
+            "image_url": "none",
+            "skill_set": "mechanic"
+      }
+    }
+  ]

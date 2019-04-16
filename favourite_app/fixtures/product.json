@@ -1,0 +1,22 @@
+[
+    {
+      "model": "favourite_app.product",
+      "pk": 1,
+      "fields": {
+        "name": "wood",
+        "picture_url": "https://images.homedepot-static.com/productImages/1b17ab46-e2f2-4ed5-8e7d-aa4d7f1d213f/svn/common-boards-493562-64_300.jpg",
+        "description": "for building stuffs",
+        "supplier": "1"
+      }
+    },
+    {
+      "model": "favourite_app.product",
+      "pk": 2,
+      "fields": {
+        "name": "paint",
+        "picture_url": "https://cdn.dick-blick.com/items/008/11/00811-2043-2ww-m.jpg",
+        "description": "for adding colour",
+        "supplier": "2"
+      }
+    }
+  ]

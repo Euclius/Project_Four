@@ -13,7 +13,7 @@ class Supplier(models.Model):
         return self.title
 
 class Guru(models.Model):
-    name: models.CharField(max_length=75)
+    name = models.CharField(max_length=75)
     brief_description = models.CharField(max_length=150)
     location = models.BooleanField(default=False, blank=True)
     image_url = models.CharField(max_length=400, blank=True)
@@ -25,7 +25,6 @@ class Guru(models.Model):
 
 class Product(models.Model):
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, related_name='suppliers')
-
     name: models.CharField(max_length=75)
     picture_url = models.CharField(max_length=400)
     description = models.TextField(blank=True)

@@ -1,0 +1,24 @@
+[
+    {
+      "model": "favourite_app.supplier",
+      "pk": 1,
+      "fields": {
+        "title": "HomeDepot",
+        "location": "False",
+        "description": "a better hardware store to buy your wood",
+        "photo_url": "https://jaimecostiglio.com/wp-content/uploads/2018/07/the-home-depot-logo-trophy-3-200x200.jpg",
+        "why": "because lowes' wood will break"
+      }
+    },
+    {
+        "model": "favourite_app.supplier",
+        "pk": 2,
+        "fields": {
+          "title": "SamFlax",
+          "location": "False",
+          "description": "art supply store",
+          "photo_url": "https://cdn.dick-blick.com/items/008/11/00811-2043-2ww-m.jpg",
+          "why": "cheapest here; show them some student id, outdated or not, and receive a discount"
+      }
+    }
+  ]
