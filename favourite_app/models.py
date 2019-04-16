@@ -22,7 +22,6 @@ class Guru(models.Model):
 
 class Product(models.Model):
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, related_name='suppliers')
-    guru = models.ForeignKey(Guru, on_delete=models.CASCADE, related_name='Gurus')
     name: models.CharField(max_length=75)
     picture_url = models.CharField(max_length=400)
 
