@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
+import GuruShow from './GuruShow';
 
 const StyledLink = styled(Link)`
 text-decoration:none;
@@ -34,11 +35,11 @@ export default class GuruIndex extends Component {
             <div>
                 <div>Guru Index page</div>
 <ul>
-    {this.state.gurus.map((guru) => {
+    {this.state.gurus.map((guru, i) => {
         return (
-        <Link to={`/gurus/${guru._id}`}
-        key={guru._id}>
-        <div>
+        <Link to={`/gurus/${guru.id}`}
+        key={i}>
+        <div  key={i}>
         {guru.name}
         </div>
         </Link>
@@ -46,6 +47,7 @@ export default class GuruIndex extends Component {
     }
     )
     }
+
 </ul>
 <button><StyledLink to='/guruCreate'>Know a local Guru? Add one!</StyledLink> </button>
             </div>

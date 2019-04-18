@@ -13,7 +13,8 @@ export default class SupplierIndex extends Component {
             description: '',
             photo_url: '',
             reason: ''
-        }
+        },
+        checked: false
     }
 
     componentDidMount = () => {
@@ -36,7 +37,7 @@ export default class SupplierIndex extends Component {
     createSupplier = async () => {
         try {
             const supplierId = this.props.match.params.id
-            const res = await axios.post(`api/v1/suppliers/${supplierId}`, this.state.newSupplier)
+            const res = await axios.post(`api/v1/suppliers/${supplierId}/`, this.state.newSupplier)
             const clonedSuppliers = [...this.state.suppliers]
             clonedSuppliers.push(res.data)
             this.setState({
@@ -70,16 +71,17 @@ export default class SupplierIndex extends Component {
 
 
     render() {
+        if(this.state.checked===true){}
         return (
             <div>
                 <div>supplier show page</div>
                 <ul>
                     {
-                        this.state.suppliers.map((supplier) => {
+                        this.state.suppliers.map((supplier, i) => {
                             return (
-                                <Link to={`/suppliers/${supplier._id}`}
-                                    key={supplier._id}>
-                                    <div>
+                                 <Link to={`/suppliers/${supplier.id}`}
+                                    key={i}>
+                                    <div key={i}>
                                         {supplier.title}
                                     </div>
                                 </Link>

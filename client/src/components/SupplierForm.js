@@ -16,7 +16,7 @@ export default function SupplierForm(props) {
             <div>
                 <label htmlFor="location">Location:</label>
                 <input
-                    type="text"
+                    type="checkbox"
                     id="location"
                     name="location"
                     value={props.supplier.location}

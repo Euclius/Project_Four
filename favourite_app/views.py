@@ -10,9 +10,11 @@ class SupplierView(viewsets.ModelViewSet):
     queryset = Supplier.objects.all()
     serializer_class = SupplierSerializer
 
+
 class ProductView(viewsets.ModelViewSet):
     queryset = Product.objects.all()
-    serialzier_class = ProductSerializer
+    serializer_class = ProductSerializer
+
 
 class GuruView(viewsets.ModelViewSet):
     queryset = Guru.objects.all()

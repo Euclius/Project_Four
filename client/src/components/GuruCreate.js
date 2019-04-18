@@ -14,12 +14,13 @@ export default class GuruCreate extends Component {
             skill_set: ""
         },
         createdGuru: {},
-        redirectToHome: false
+        redirectToHome: false,
+        checked: false
     }
 
-componentDidMount =() => {
-    this.getGuru()
-}
+// componentDidMount =() => {
+//     this.getGuru()
+// }
 
 getGuru = async () => {
     try {
@@ -34,9 +35,7 @@ getGuru = async () => {
 }
     
 createGuru = () => {
-    axios.post(`/api/v1/gurus/`, {
-        guru: this.state.guru
-    }).then((res) => {
+    axios.post(`/api/v1/gurus/`, this.state.guru).then((res) => {
         const guruList = [...this.state.gurus]
         guruList.unshift(res.data)
         this.setState({ createdGuru: res.data, redirectToHome: true})
@@ -46,7 +45,9 @@ createGuru = () => {
 handleChange = (e) => {
     const newGuru = {...this.state.guru}
     newGuru[e.target.name] = e.target.value
+    console.log(newGuru)
     this.setState({guru: newGuru})
+    this.setState({checked: !this.state.checked})
 }
 
 handleSubmit = (e) => {
@@ -58,6 +59,7 @@ this.createGuru()
         if(this.state.redirectToHome===true) {
             return (<Redirect to={`/gurus/${this.state.createdGuru._id}`}></Redirect>)
         }
+        if(this.state.checked===true) {}
         return (
             <div>
 <h1>GuruCREATE</h1>
@@ -81,7 +83,7 @@ value={this.state.guru.brief_description}/>
 <label htmlFor="location">Location:</label>
 <input onChange={this.handleChange}
 name="location"
-type="text"
+type="checkbox"
 value={this.state.guru.location}/>
 </div>
 <div>

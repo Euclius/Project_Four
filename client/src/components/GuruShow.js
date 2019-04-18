@@ -12,14 +12,14 @@ guru: {
 }
     }
 
-    componentDidMount() {
-        const guruId = this.props.match.params.id
-        this.getGuru(guruId)
-    }
+    // componentDidMount() {
+    //     const guruId = this.props.match.params.guruId
+    //     this.getGuru(guruId)
+    // }
 
     getGuru = async (guruId) => {
         try {
-            const res = await axios.get(`/api/v1/gurus/${guruId}`)
+            const res = await axios.get(`/api/v1/gurus/${guruId}/`)
             this.setState({
                 guru: res.data
             })
@@ -32,7 +32,7 @@ guru: {
 render() {
     return (
         <div>
-
+I'm a show
         </div>
     )
 }

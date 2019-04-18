@@ -8,6 +8,7 @@ import GuruCreate from './components/GuruCreate'
 import GuruShow from './components/GuruShow.js'
 import ProductIndex from './components/ProductIndex.js'
 import styled from 'styled-components'
+import ProductShow from './components/ProductShow.js'
 
 const StyledLink = styled(Link)`
 text-decoration:none;
@@ -28,7 +29,7 @@ class App extends Component {
 </div>
 <Nav>
   <div>
-  <StyledLink to='/suppliers'>All suppliers</StyledLink>
+  <StyledLink to='/suppliers'>All Suppliers</StyledLink>
   </div>
   <div>
   <StyledLink to='/gurus'>All Gurus</StyledLink>
@@ -40,14 +41,16 @@ class App extends Component {
   <StyledLink to='/'>Go Back Home</StyledLink>
   </div>
   {/* <Link to=''>Specific Supplier</Link> */}
+
 </Nav>      
       <Switch>
         <Route exact path="/suppliers" component={SupplierIndex}/>
         <Route path="/suppliers/:supplierId" component={SupplierShow}/>
-        <Route path="/gurus" component={GuruIndex}/>
+        <Route exact path="/gurus" component={GuruIndex}/>
         <Route path="/guruCreate" component={GuruCreate}/>
-        <Route path='/gurus/:guruId' component={GuruShow}/>
-        <Route path='/products' component={ProductIndex}/>
+       <Route path='/gurus/:guruId' component={GuruShow}/>
+        <Route exact path='/products' component={ProductIndex}/>
+        <Route path='/products/:productId' component={ProductShow}/>
       </Switch>
 </div>
      </Router> 
