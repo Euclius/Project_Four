@@ -20,7 +20,7 @@ export default function SupplierForm(props) {
                     id="location"
                     name="location"
                     value={props.supplier.location}
-                    onChange={props.handleChange}
+                    onChange={props.locationSwitch}
                 />
             </div>
             <div>

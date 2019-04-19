@@ -55,7 +55,14 @@ export default class SupplierIndex extends Component {
             console.log(error, 'error from createSupplier')
         }
     }
-
+locationSwitch=()=>{
+    console.log('switch being clicked?')
+    let checkedBox = this.state.checked
+    checkedBox = !checkedBox
+    this.setState({
+        checked: checkedBox
+    })
+}
     handleChange = (e) => {
         const clonedNewSupplier = { ...this.state.newSupplier }
         clonedNewSupplier[e.target.name] = e.target.value
@@ -96,6 +103,7 @@ export default class SupplierIndex extends Component {
                     supplier={this.state.newSupplier}
                     handleChange={this.handleChange}
                     handleSubmit={this.createSupplier}
+                    locationSwitch={this.locationSwitch}
                     submitBtnText="Create"
                 />
             </div>
@@ -106,36 +114,3 @@ export default class SupplierIndex extends Component {
 
 
 
-
-/* <div>
-                    <h2>add a favourite supplier</h2>
-                    <form onSubmit={this.createSupplier}>
-                        <input
-                            type="text"
-                            name="name"
-                            value={this.state.newSupplier.title}
-                            onChange={this.handleChange} />
-                        <Link to={`/suppliers/${this.state.supplier}/`}>{this.state.suppliers.title}</Link>
-                        <button>Create</button>
-                    </form>
-                </div> */
-
-
-            //     try {
-            //         const res = await axios.get(`/api/v1/suppliers/`)
-            //         this.setState({
-            //             suppliers: res.data,
-            //         })
-            //     }
-            //     catch (error) {
-            //         console.log(error, 'error from fetch supplier on supplier index')
-            //     }
-            // }
-
-            // fetchSupplier = (error) => {
-            //     axios.get('api/suppliers').then(res=> {
-            //         this.setState({suppliers: res.data})
-            //     })
-            //         console.log(error, 'error from fetchsupplier on supplierindex')
-
-            //         }
