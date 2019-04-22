@@ -13,8 +13,10 @@ export default class GuruEdit extends Component {
             image_url: '',
             skill_set: ''
         },
-        guruEdited: false,
+
         checked: false,
+        redirectToGuru: false,
+        redirectToHome: false
     }
     componentDidMount = () => {
         axios.get(`/api/v1/gurus/${this.props.match.params.guruId}/`)
@@ -33,7 +35,7 @@ export default class GuruEdit extends Component {
     }
     editGuru = () => {
         const payload = this.state.guru
-        axios.put(`/api/v1/gurus/${this.props.match.params.id}/`, payload)
+        axios.put(`/api/v1/gurus/${this.props.match.params.guruId}/`, payload)
             .then((res) => {
                 console.log(res)
                 this.setState({
@@ -45,7 +47,8 @@ export default class GuruEdit extends Component {
                         image_url: res.data.image_url,
                         skill_set: res.data.skill_set
                     },
-                    guruEdited: true
+
+                    redirectToHome: true
                 })
                 this.props.history.goBack()
             })
@@ -65,23 +68,26 @@ export default class GuruEdit extends Component {
         const guruId = this.props.match.params.guruId
         axios.delete(`/api/v1/gurus/${guruId}/`)
             .then(() => {
-                this.props.history.goBack()
+                this.setState({ redirectToHome: true })
             })
     }
-    handleGuruEdit = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault()
         this.editGuru()
     }
     render() {
-        if (this.state.redirectToHome === true && this.state.guruEdited === true) {
-            return (<Redirect to={`/gurus/${this.state.guruEdited.id}/`}></Redirect>)
+        if (this.state.redirectToHome === true) {
+            return (<Redirect to={`/gurus`} />)
+        }
+        if (this.state.redirectToGuru === true) {
+            return (<Redirect to={`/gurus/${this.props.match.params.guruId}/`} />)
         }
         return (
             <div>
                 <GuruForm
                     guru={this.state.guru}
                     handleChange={this.handleChange}
-                    handleGuruEdit={this.editGuru}
+                    handleSubmit={this.handleSubmit}
                     submitBtnText="Update this local Guru"
                 />
                 <button onClick={() => this.guruDelete(this.state.guru.guruId)}>Delete</button>

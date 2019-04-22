@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
-import GuruShow from './GuruShow';
 
 const StyledLink = styled(Link)`
 text-decoration:none;
@@ -17,7 +16,7 @@ export default class GuruIndex extends Component {
     componentDidMount = () => {
         this.getGuru()
     }
-    
+
     getGuru = async () => {
         try {
             const res = await axios.get(`/api/v1/gurus/`)
@@ -34,22 +33,22 @@ export default class GuruIndex extends Component {
         return (
             <div>
                 <div>Guru Index page</div>
-<ul>
-    {this.state.gurus.map((guru, i) => {
-        return (
-        <Link to={`/gurus/${guru.id}`}
-        key={i}>
-        <div  key={i}>
-        {guru.name}
-        </div>
-        </Link>
-        )
-    }
-    )
-    }
+                <ul>
+                    {this.state.gurus.map((guru) => {
+                        return (
+                            <Link to={`/gurus/${guru.id}`}
+                                key={guru.id}>
+                                <div>
+                                    {guru.name}
+                                </div>
+                            </Link>
+                        )
+                    }
+                    )
+                    }
 
-</ul>
-<button><StyledLink to='/guruCreate'>Know a local Guru? Add one!</StyledLink> </button>
+                </ul>
+                <button><StyledLink to='/guruCreate'>Know a local Guru? Add one!</StyledLink> </button>
             </div>
         )
     }

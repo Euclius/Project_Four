@@ -21,7 +21,6 @@ export default class ProductShow extends Component {
     }
 
     showSpecificProduct = () => {
-        const supplierId = this.props.match.params.supplierId
         const productId = this.props.match.params.productId
         axios.get(`/api/v1/products/${productId}/`)
             .then(res => {
@@ -40,7 +39,7 @@ export default class ProductShow extends Component {
                     Picture: <div>{this.state.product.picture_url}</div>
                     Supplier:<div>{this.state.supplier.title}</div>
                 </div>
-                <Link to={`/proucts/${this.state.product.id}/edit`}>Edit</Link>
+                <Link to={`/products/${this.state.product.id}/edit`}>Edit</Link>
             </div>
         )
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import SupplierForm from './SupplierForm.js'
+import { Redirect } from 'react-router-dom'
 
 export default class SupplierEdit extends Component {
     state = {
@@ -12,7 +13,8 @@ export default class SupplierEdit extends Component {
             photo_url: '',
             reason: ''
         },
-        checked: false
+        checked: false,
+        redirectToHome: false
     }
     componentDidMount = () => {
         axios.get(`/api/v1/suppliers/${this.props.match.params.supplierId}/`)
@@ -38,54 +40,56 @@ export default class SupplierEdit extends Component {
         const payload = this.state.supplier
         const supplierId = this.props.match.params.supplierId
         axios.put(`/api/v1/suppliers/${supplierId}/`, payload)
-            .then((res) => {
-                console.log(res)
-            }
-            )
-    }
+            .then(() => {
+                this.setState({
+                    redirectToHome: true
+                })
+            })
+}
 
 
-    handleChange = (e) => {
-        const editSupplier = { ...this.state.supplier }
+handleChange = (e) => {
+    const editSupplier = { ...this.state.supplier }
+    if (e.target.type === 'checkbox') {
+        this.setState({ checked: !this.state.checked })
+        editSupplier.location = !this.state.checked
+    } else {
         editSupplier[e.target.name] = e.target.value
-        this.setState({ supplier: editSupplier })
     }
+    this.setState({ supplier: editSupplier })
+}
 
-    locationSwitch=()=>{
-        console.log('switch being clicked?')
-        let checkedBox = this.state.checked
-        checkedBox = !checkedBox
-        this.setState({
-            checked: checkedBox
-        })
-    }
 
-    handleEdit = (e) => {
-        e.preventDefault()
-        this.supplierEdit()
-    }
 
-    supplierDelete = () => {
-        const supplierId = this.props.match.params.supplierId
-        axios.delete(`/api/v1/suppliers/${supplierId}`)
+handleSubmit = (e) => {
+    e.preventDefault()
+    this.supplierEdit()
+}
+
+supplierDelete = () => {
+    const supplierId = this.props.match.params.supplierId
+    axios.delete(`/api/v1/suppliers/${supplierId}/`)
         .then(() => {
-            this.props.history.goBack()
-          })
-    }
+            this.setState({ redirectToHome: true })
+        })
+}
 
-    render() {
+render() {
+    if (this.state.redirectToHome === true) {
         return (
-            <div>
-                <SupplierForm
-                    supplier={this.state.supplier}
-                    handleChange={this.handleChange}
-                    handleEdit={this.supplierEdit}
-                    locationSwitch={this.locationSwitch}
-                    submitBtnText="update"
-                />
-                <button onClick={()=> this.supplierDelete(this.state.supplier.supplierId)}>Delete</button>
-            </div>
-            
-        )
+            <Redirect to='/suppliers' />)
     }
+    return (
+        <div>
+            <SupplierForm
+                supplier={this.state.supplier}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+                submitBtnText="update"
+            />
+            <button onClick={() => this.supplierDelete(this.state.supplier.supplierId)}>Delete</button>
+        </div>
+
+    )
+}
 }

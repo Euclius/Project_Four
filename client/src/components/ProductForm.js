@@ -44,7 +44,7 @@ export default function ProductForm(props) {
                     value={props.product.picture_url}
                 />
             </div>
-            <div><button>Add a favourite Product of yours!</button></div>
+<button>{props.submitBtnText}</button>
         </form>
     )
 }

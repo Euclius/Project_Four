@@ -37,39 +37,27 @@ export default class SupplierIndex extends Component {
         }
     }
 
-    createSupplier = async () => {
-        try {
-            let payload = this.state.newSupplier
-            console.log(payload)
-            console.log("im updating!!")
-            const res = await axios.post(`/api/v1/suppliers/`, payload)
-            const clonedSuppliers = [...this.state.suppliers]
-            clonedSuppliers.push(res.data)
-            this.setState({
-                suppliers: clonedSuppliers,
-                newSupplier: {
-                    title: res.data.title,
-                    location: this.state.checked,
-                    description: res.data.description,
-                    photo_url: res.data.photo_url,
-                    reason: res.data.reason
-                }, redirectToHome: true,
-                createdSupplier: {}
-            })
-        }
-        catch (error) {
-            console.log(error, 'error from createSupplier')
-        }
-    }
 
-    locationSwitch=()=>{
-        console.log('switch being clicked?')
-        let checkedBox = this.state.checked
-        checkedBox = !checkedBox
-        this.setState({
-            checked: !checkedBox, location: true
+    supplierCreate = () => {
+        axios.post(`/api/v1/suppliers/`,
+            this.state.newSupplier
+        ).then(res => {
+            const supplierList = [...this.state.suppliers]
+            supplierList.unshift(res.data)
+            this.setState({
+                redirectToHome: true,
+                suppliers: supplierList,
+                newSupplier: {
+                    title: '',
+                    location: false,
+                    description: '',
+                    photo_url: '',
+                    reason: ''
+                }
+            })
         })
     }
+
     handleChange = (e) => {
         const clonedNewSupplier = { ...this.state.newSupplier }
         if (e.target.type === 'checkbox') {
@@ -85,19 +73,16 @@ export default class SupplierIndex extends Component {
         })
     }
 
-
     handleSubmit = (e) => {
         e.preventDefault()
-        this.createSupplier()
+        this.supplierCreate()
     }
+
     checkIt = () => {
         console.log(this.state.newSupplier)
     }
 
     render() {
-        if (this.state.redirectToHome === true) {
-            return (<Redirect to={`/suppliers/${this.state.createdSupplier.id}`}></Redirect>)
-        }
         if (this.state.checked === true) { }
         return (
             <div>
@@ -123,9 +108,7 @@ export default class SupplierIndex extends Component {
                 <SupplierForm
                     supplier={this.state.newSupplier}
                     handleChange={this.handleChange}
-                    handleSubmit={this.createSupplier}
-                    locationSwitch={this.locationSwitch}
-
+                    handleSubmit={this.handleSubmit}
                     submitBtnText="Create"
                 />
             </div>

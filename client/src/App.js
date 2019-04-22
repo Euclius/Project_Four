@@ -12,7 +12,7 @@ import ProductShow from './components/ProductShow.js'
 import ProductCreate from './components/ProductCreate.js'
 import GuruEdit from './components/GuruEdit.js'
 import SupplierEdit from './components/EditSupplier.js'
-import ProductEdit from './components/ProductForm.js'
+import ProductEdit from './components/ProductEdit.js'
 
 const StyledLink = styled(Link)`
 text-decoration:none;
@@ -49,7 +49,7 @@ class App extends Component {
           </Nav>
           <Switch>
             {/* index, with supplier also being create */}
-            <Route exact path="/suppliers" component={SupplierIndex} />
+            <Route exact path="/suppliers/" component={SupplierIndex} />
             <Route exact path='/products' component={ProductIndex} />
             <Route exact path="/gurus" component={GuruIndex} />
             {/* create */}

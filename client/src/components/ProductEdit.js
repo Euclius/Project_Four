@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import ProductForm from './ProductForm.js'
+import {Redirect} from 'react-router-dom'
 
 export default class ProductEdit extends Component {
     state = {
@@ -11,11 +12,12 @@ export default class ProductEdit extends Component {
             supplier: '',
             picture_url: ''
         },
-        productEdited: false
+        productEdited: false,
+        redirectToHome: false
     }
 
     componentDidMount = () => {
-        axios.get(`/api/v1/products${this.props.match.params.productId}/`)
+        axios.get(`/api/v1/products/${this.props.match.params.productId}/`)
             .then(res => {
                 this.setState({
                     product: {
@@ -31,16 +33,15 @@ export default class ProductEdit extends Component {
 
     productEdit = () => {
         const payload = this.state.product
-        const productId = this.props.match.params.id
+        const productId = this.props.match.params.productId
         axios.put(`/api/v1/products/${productId}/`, payload)
             .then((res) => {
-                console.log(res)
                 this.setState({
                     product: {
                         name: res.data.name,
                         description: res.data.description,
-                        supplier:res.data.supplier,
-                        picture_url: res.data.picrture_url
+                        supplier: res.data.supplier,
+                        picture_url: res.data.picture_url
                     },
                     productEdited: true
                 })
@@ -52,7 +53,7 @@ export default class ProductEdit extends Component {
         productEdit[e.target.name] = e.target.value
         this.setState({ product: productEdit })
     }
-    handleProductEdit = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault()
         this.productEdit()
     }
@@ -61,19 +62,21 @@ export default class ProductEdit extends Component {
         const productId = this.props.match.params.productId
         axios.delete(`/api/v1/products/${productId}/`)
             .then(() => {
-                this.props.history.goBack()
+  this.setState({redirectToHome: true})
             })
     }
 
     render() {
+        if (this.state.redirectToHome === true) {
+            return (<Redirect to='/products/' />)
+        }
         return (
             <div>
                 <ProductForm
                     product={this.state.product}
                     handleChange={this.handleChange}
-                    handleProductEdit={this.productEdit}
+                    handleSubmit={this.handleSubmit}
                     submitBtnText="update this product"
-
                 />
                 <button onClick={() => this.productDelete(this.state.product.productId)}>Delete</button>
             </div>

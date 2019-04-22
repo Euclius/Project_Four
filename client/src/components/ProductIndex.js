@@ -56,7 +56,7 @@ export default class ProductIndex extends Component {
                     }
                     )
                 }
-<button><Link to='/productCreate'>Add a Product</Link></button>
+                <button><Link to='/productCreate'>Add a Product</Link></button>
             </div>
         )
     }

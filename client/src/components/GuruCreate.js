@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect} from 'react-router-dom'
 
 
 export default class GuruCreate extends Component {
@@ -31,6 +31,7 @@ export default class GuruCreate extends Component {
     }
 
     createGuru = () => {
+        console.log(this.state.guru)
         axios.post(`/api/v1/gurus/`, this.state.guru).then((res) => {
             const guruList = [...this.state.gurus]
             guruList.unshift(res.data)
@@ -39,6 +40,7 @@ export default class GuruCreate extends Component {
     }
 
     handleChange = (e) => {
+        console.log(this.state.guru)
         const newGuru = { ...this.state.guru }
         if (e.target.type === 'checkbox') {
             this.setState({ checked: !this.state.checked })

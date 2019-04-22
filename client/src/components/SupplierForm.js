@@ -4,6 +4,7 @@ export default function SupplierForm(props) {
     console.log(props)
 
     return (
+        
         <form onSubmit={props.handleSubmit}>
             <div>
                 <label htmlFor="title">Name:</label>
