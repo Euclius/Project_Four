@@ -9,7 +9,7 @@ export default class GuruCreate extends Component {
         guru: {
             name: '',
             brief_description: '',
-            location: '',
+            location: false,
             image_url: '',
             skill_set: ''
         },
@@ -40,10 +40,14 @@ export default class GuruCreate extends Component {
 
     handleChange = (e) => {
         const newGuru = { ...this.state.guru }
-        newGuru[e.target.name] = e.target.value
+        if (e.target.type === 'checkbox') {
+            this.setState({ checked: !this.state.checked })
+            newGuru.location = !this.state.checked
+        } else {
+            newGuru[e.target.name] = e.target.value
+        }
         console.log(newGuru)
         this.setState({ guru: newGuru })
-        this.setState({ checked: !this.state.checked })
     }
 
     handleSubmit = (e) => {
@@ -80,6 +84,7 @@ export default class GuruCreate extends Component {
                             <input onChange={this.handleChange}
                                 name="location"
                                 type="checkbox"
+                                checked={this.state.checked}
                                 value={this.state.guru.location} />
                         </div>
                         <div>

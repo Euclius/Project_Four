@@ -38,7 +38,7 @@ export default class ProductCreate extends Component {
 
     productCreate = () => {
         const productId = this.props.match.params.productId
-        axios.post(`/api/v1/products/${productId}`, {
+        axios.post(`/api/v1/products/${productId}/`, {
             product: this.state.product
         }).then(res => {
             const productList = [...this.state.products]
@@ -50,7 +50,7 @@ export default class ProductCreate extends Component {
     createProduct = async () => {
         try {
             const productId = this.props.match.params.id
-            const res = await axios.post(`/api/v1/products/${productId}/`, this.state.product)
+            const res = await axios.post(`/api/v1/products/`, this.state.product)
             const productList = [...this.state.products]
             productList.unshift(res.data)
             this.setState({
@@ -89,7 +89,7 @@ export default class ProductCreate extends Component {
     }
     render() {
         if (this.state.redirectToHome === true) {
-            return (<Redirect to={`/products/${this.state.createdProduct.id}`}></Redirect>)
+            return (<Redirect to={`/products/${this.state.createdProductId}`}></Redirect>)
         }
         return (
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import SupplierForm from './SupplierForm.js'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 export default class SupplierIndex extends Component {
 
@@ -16,7 +16,8 @@ export default class SupplierIndex extends Component {
             reason: ''
         },
         checked: false,
-        redirectToHome: false
+        redirectToHome: false,
+        createdSupplier: {}
     }
 
     componentDidMount = () => {
@@ -38,12 +39,10 @@ export default class SupplierIndex extends Component {
 
     createSupplier = async () => {
         try {
-            const supplierId = this.props.match.params.id
-                let payload = this.state.newSupplier
-                
+            let payload = this.state.newSupplier
             console.log(payload)
             console.log("im updating!!")
-            const res = await axios.post(`/api/v1/suppliers/`, payload )
+            const res = await axios.post(`/api/v1/suppliers/`, payload)
             const clonedSuppliers = [...this.state.suppliers]
             clonedSuppliers.push(res.data)
             this.setState({
@@ -54,53 +53,61 @@ export default class SupplierIndex extends Component {
                     description: res.data.description,
                     photo_url: res.data.photo_url,
                     reason: res.data.reason
-                }, redirectToHome: true
+                }, redirectToHome: true,
+                createdSupplier: {}
             })
         }
         catch (error) {
             console.log(error, 'error from createSupplier')
         }
     }
-    
-locationSwitch=()=>{
-    console.log('switch being clicked?')
-    let checkedBox = this.state.checked
-    checkedBox = !checkedBox
-    this.setState({
-        checked: checkedBox
-    })
-}
-    handleChange = (e) => {
-        
-        const clonedNewSupplier ={ ...this.state.newSupplier }
-        // console.log(clonedNewSupplier.supplier)
-        clonedNewSupplier[e.target.name] = e.target.value
+
+    locationSwitch=()=>{
+        console.log('switch being clicked?')
+        let checkedBox = this.state.checked
+        checkedBox = !checkedBox
         this.setState({
-            newSupplier: clonedNewSupplier
+            checked: !checkedBox, location: true
         })
     }
+    handleChange = (e) => {
+        const clonedNewSupplier = { ...this.state.newSupplier }
+        if (e.target.type === 'checkbox') {
+            this.setState({ checked: !this.state.checked })
+            clonedNewSupplier.location = !this.state.checked
+        }
+        else {
+            clonedNewSupplier[e.target.name] = e.target.value
+        }
+        console.log(clonedNewSupplier)
+        this.setState({
+            newSupplier: clonedNewSupplier,
+        })
+    }
+
 
     handleSubmit = (e) => {
         e.preventDefault()
         this.createSupplier()
     }
-checkIt=()=>{
-    console.log(this.state.newSupplier)
-}
-
-    render() { if (this.state.redirectToHome===true) {
-        return (<Redirect to={`/suppliers/${this.state.supplier.id}`}></Redirect>)
+    checkIt = () => {
+        console.log(this.state.newSupplier)
     }
-        if(this.state.checked===true){}
+
+    render() {
+        if (this.state.redirectToHome === true) {
+            return (<Redirect to={`/suppliers/${this.state.createdSupplier.id}`}></Redirect>)
+        }
+        if (this.state.checked === true) { }
         return (
             <div>
-                <div>supplier show page</div>
+                <div>supplier index page</div>
                 <button onClick={this.checkIt} >checkittttt</button>
                 <ul>
                     {
                         this.state.suppliers.map((supplier, i) => {
                             return (
-                                 <Link to={`/suppliers/${supplier.id}`}
+                                <Link to={`/suppliers/${supplier.id}`}
                                     key={i}>
                                     <div key={i}>
                                         {supplier.title}
@@ -118,7 +125,7 @@ checkIt=()=>{
                     handleChange={this.handleChange}
                     handleSubmit={this.createSupplier}
                     locationSwitch={this.locationSwitch}
-                    location={this.state.checked}
+
                     submitBtnText="Create"
                 />
             </div>

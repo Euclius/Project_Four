@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import ProductForm from './ProductForm'
+import ProductForm from './ProductForm.js'
 
 export default class ProductEdit extends Component {
     state = {
@@ -15,7 +15,7 @@ export default class ProductEdit extends Component {
     }
 
     componentDidMount = () => {
-        axios.get(`/api/v1/products${this.props.match.params.productId}`)
+        axios.get(`/api/v1/products${this.props.match.params.productId}/`)
             .then(res => {
                 this.setState({
                     product: {
@@ -37,10 +37,10 @@ export default class ProductEdit extends Component {
                 console.log(res)
                 this.setState({
                     product: {
-                        name: '',
-                        description: '',
-                        supplier: '',
-                        picture_url: ''
+                        name: res.data.name,
+                        description: res.data.description,
+                        supplier:res.data.supplier,
+                        picture_url: res.data.picrture_url
                     },
                     productEdited: true
                 })

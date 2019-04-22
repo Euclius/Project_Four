@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import GuruForm from './GuruForm'
+import { Redirect } from 'react-router-dom'
 
 export default class GuruEdit extends Component {
     state = {
         guru: {
             id: '',
-            name: "",
-            brief_description: "",
-            location: "",
-            image_url: "",
-            skill_set: ""
+            name: '',
+            brief_description: '',
+            location: false,
+            image_url: '',
+            skill_set: ''
         },
         guruEdited: false,
         checked: false,
@@ -30,7 +31,6 @@ export default class GuruEdit extends Component {
                 })
             })
     }
-
     editGuru = () => {
         const payload = this.state.guru
         axios.put(`/api/v1/gurus/${this.props.match.params.id}/`, payload)
@@ -50,37 +50,32 @@ export default class GuruEdit extends Component {
                 this.props.history.goBack()
             })
     }
-
     handleChange = (e) => {
         const guruEdit = { ...this.state.guru }
-        guruEdit[e.target.name] = e.target.value
-        this.setState({ guru: guruEdit,  checked: this.state.guru.location})
+        if (e.target.type === 'checkbox') {
+            this.setState({ checked: !this.state.checked })
+            guruEdit.location = !this.state.checked
+        } else {
+            guruEdit[e.target.name] = e.target.value
+        }
+        console.log(guruEdit)
+        this.setState({ guru: guruEdit })
     }
-
+    guruDelete = () => {
+        const guruId = this.props.match.params.guruId
+        axios.delete(`/api/v1/gurus/${guruId}/`)
+            .then(() => {
+                this.props.history.goBack()
+            })
+    }
     handleGuruEdit = (e) => {
         e.preventDefault()
         this.editGuru()
     }
-
-    locationSwitch=()=>{
-        console.log('switch being clicked?')
-        let checkedBox = this.state.checked
-        // this.state.guru.location = this.state.checked
-        checkedBox = !checkedBox
-        this.setState({
-            checked: checkedBox
-        })
-    }
-
-guruDelete = () => {
-    const guruId = this.props.match.params.guruId
-    axios.delete(`/api/v1/gurus/${guruId}/`)
-    .then(() => {
-        this.props.history.goBack()
-      })
-}
-
     render() {
+        if (this.state.redirectToHome === true && this.state.guruEdited === true) {
+            return (<Redirect to={`/gurus/${this.state.guruEdited.id}/`}></Redirect>)
+        }
         return (
             <div>
                 <GuruForm
@@ -89,7 +84,7 @@ guruDelete = () => {
                     handleGuruEdit={this.editGuru}
                     submitBtnText="Update this local Guru"
                 />
-<button onClick={()=> this.guruDelete(this.state.guru.guruId)}>Delete</button>
+                <button onClick={() => this.guruDelete(this.state.guru.guruId)}>Delete</button>
             </div>
         )
     }

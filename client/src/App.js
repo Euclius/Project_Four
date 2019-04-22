@@ -48,17 +48,21 @@ class App extends Component {
 
           </Nav>
           <Switch>
+            {/* index, with supplier also being create */}
             <Route exact path="/suppliers" component={SupplierIndex} />
-            <Route exact path="/suppliers/:supplierId" component={SupplierShow} />
-            <Route exact path="/gurus" component={GuruIndex} />
-            <Route exact path="/guruCreate" component={GuruCreate} />
-            <Route exact path='/gurus/:guruId' component={GuruShow} />
             <Route exact path='/products' component={ProductIndex} />
-            <Route exact path='/products/:productId' component={ProductShow} />
+            <Route exact path="/gurus" component={GuruIndex} />
+            {/* create */}
+            <Route exact path="/guruCreate" component={GuruCreate} />
             <Route exact path='/productCreate' component={ProductCreate} />
-            <Route path='/gurus/:guruId/edit' component={GuruEdit} />
-            <Route exact path='/suppliers/:supplierId/edit' component= {SupplierEdit}/>
-            <Route exact path='/products/:productId/edit' component={ProductEdit}/>
+            {/* show */}
+            <Route exact path='/gurus/:guruId' component={GuruShow} />
+            <Route exact path='/products/:productId' component={ProductShow} />
+            <Route exact path="/suppliers/:supplierId" component={SupplierShow} />
+            {/* edit */}
+            <Route exact path='/gurus/:guruId/edit' component={GuruEdit} />
+            <Route exact path='/suppliers/:supplierId/edit' component={SupplierEdit} />
+            <Route exact path='/products/:productId/edit' component={ProductEdit} />
           </Switch>
         </div>
       </Router>
