@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import SupplierForm from './SupplierForm';
+import SupplierForm from './SupplierForm.js'
+import {Redirect} from 'react-router-dom'
 
 export default class SupplierIndex extends Component {
 
@@ -9,12 +10,13 @@ export default class SupplierIndex extends Component {
         suppliers: [],
         newSupplier: {
             title: '',
-            location: '',
+            location: false,
             description: '',
             photo_url: '',
             reason: ''
         },
-        checked: false
+        checked: false,
+        redirectToHome: false
     }
 
     componentDidMount = () => {
@@ -37,24 +39,29 @@ export default class SupplierIndex extends Component {
     createSupplier = async () => {
         try {
             const supplierId = this.props.match.params.id
-            const res = await axios.post(`api/v1/suppliers/${supplierId}/`, this.state.newSupplier)
+                let payload = this.state.newSupplier
+                
+            console.log(payload)
+            console.log("im updating!!")
+            const res = await axios.post(`/api/v1/suppliers/`, payload )
             const clonedSuppliers = [...this.state.suppliers]
             clonedSuppliers.push(res.data)
             this.setState({
                 suppliers: clonedSuppliers,
                 newSupplier: {
-                    title: '',
-                    location: '',
-                    description: '',
-                    photo_url: '',
-                    reason: ''
-                }
+                    title: res.data.title,
+                    location: this.state.checked,
+                    description: res.data.description,
+                    photo_url: res.data.photo_url,
+                    reason: res.data.reason
+                }, redirectToHome: true
             })
         }
         catch (error) {
             console.log(error, 'error from createSupplier')
         }
     }
+    
 locationSwitch=()=>{
     console.log('switch being clicked?')
     let checkedBox = this.state.checked
@@ -64,7 +71,9 @@ locationSwitch=()=>{
     })
 }
     handleChange = (e) => {
-        const clonedNewSupplier = { ...this.state.newSupplier }
+        
+        const clonedNewSupplier ={ ...this.state.newSupplier }
+        // console.log(clonedNewSupplier.supplier)
         clonedNewSupplier[e.target.name] = e.target.value
         this.setState({
             newSupplier: clonedNewSupplier
@@ -75,13 +84,18 @@ locationSwitch=()=>{
         e.preventDefault()
         this.createSupplier()
     }
+checkIt=()=>{
+    console.log(this.state.newSupplier)
+}
 
-
-    render() {
+    render() { if (this.state.redirectToHome===true) {
+        return (<Redirect to={`/suppliers/${this.state.supplier.id}`}></Redirect>)
+    }
         if(this.state.checked===true){}
         return (
             <div>
                 <div>supplier show page</div>
+                <button onClick={this.checkIt} >checkittttt</button>
                 <ul>
                     {
                         this.state.suppliers.map((supplier, i) => {
@@ -104,6 +118,7 @@ locationSwitch=()=>{
                     handleChange={this.handleChange}
                     handleSubmit={this.createSupplier}
                     locationSwitch={this.locationSwitch}
+                    location={this.state.checked}
                     submitBtnText="Create"
                 />
             </div>

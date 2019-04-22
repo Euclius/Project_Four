@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 export default class GuruShow extends Component {
     state={
 guru: {
+    guruId: '',
     name: "",
     brief_description: "",
     location: "",
@@ -12,10 +14,10 @@ guru: {
 }
     }
 
-    // componentDidMount() {
-    //     const guruId = this.props.match.params.guruId
-    //     this.getGuru(guruId)
-    // }
+    componentDidMount() {
+        const guruId = this.props.match.params.guruId
+        this.getGuru(guruId)
+    }
 
     getGuru = async (guruId) => {
         try {
@@ -32,7 +34,16 @@ guru: {
 render() {
     return (
         <div>
-I'm a show
+<button> <Link to={`/gurus/${this.state.guru.id}/edit`}> Edit </Link>  </button>
+<div key={this.state.guru.id}>
+
+<div>Name: {this.state.guru.name}</div>
+<div>Location: {this.state.guru.location}</div>
+<div>Description: {this.state.guru.brief_description}</div>
+<div>Picture: {this.state.guru.image_url}</div>
+<div>SkillSet: {this.state.guru.skill_set}</div>
+
+</div>
         </div>
     )
 }

@@ -25,7 +25,7 @@ export default function ProductForm(props) {
                 />
             </div>
             <div>
-                <label htmlFor="supplier">Location:</label>
+                <label htmlFor="supplier">Supplier:</label>
                 <input
                     onChange={props.handleChange}
                     name="supplier"

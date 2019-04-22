@@ -1,6 +1,8 @@
 import React from 'react'
 
 export default function SupplierForm(props) {
+    console.log(props)
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 export default class ProductShow extends Component {
     state = {
@@ -15,7 +16,7 @@ export default class ProductShow extends Component {
     }
 
     componentDidMount() {
-        const productId = this.props.match.params._id
+        const productId = this.props.match.params.id
         this.showSpecificProduct(productId)
     }
 
@@ -32,14 +33,14 @@ export default class ProductShow extends Component {
     render() {
         return (
             <div>
-                <div key={this.state.product._id}>
+                <div key={this.state.product.id}>
 
                     Name:<div>{this.state.product.name}</div>
                     Description: <div>{this.state.product.description}</div>
                     Picture: <div>{this.state.product.picture_url}</div>
                     Supplier:<div>{this.state.supplier.title}</div>
-
                 </div>
+                <Link to={`/proucts/${this.state.product.id}/edit`}>Edit</Link>
             </div>
         )
     }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 export default class SupplierShow extends Component {
 
@@ -22,7 +23,7 @@ export default class SupplierShow extends Component {
                     this.setState({
                         product: res.data.product,
                         supplier: {
-                            supplierId: res.data._id,
+                            id: res.data.id,
                             title: res.data.title,
                             location: res.data.location,
                             description: res.data.description,
@@ -40,13 +41,14 @@ export default class SupplierShow extends Component {
     render() {
         return (
             <div>
-                <div key={this.state.supplier._id}>
+                <Link to ={`/suppliers/${this.state.supplier.id}/edit`}>Edit</Link>
+                <div key={this.state.supplier.id}>
 
-                    Title:<div>{this.state.supplier.title}</div>
-                    Location:<div>{this.state.supplier.location}</div>
-                    Description: <div>{this.state.supplier.description}</div>
-                    Picture: <div>{this.state.supplier.photo_url}</div>
-                    Reason:<div>{this.state.supplier.reason}</div>
+                    <div>Title: {this.state.supplier.title}</div>
+                    <div>Location: {this.state.supplier.location}</div>
+                    <div>Description: {this.state.supplier.description}</div>
+                    <div>Picture: {this.state.supplier.photo_url}</div>
+                    <div>Reason: {this.state.supplier.reason}</div>
 
                 </div>
             </div>

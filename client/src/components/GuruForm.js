@@ -30,7 +30,7 @@ export default function GuruForm(props) {
                     onChange={props.handleChange}
                     name="location"
                     id="location"
-                    type="text"
+                    type="checkbox"
                     value={props.guru.location}
                 />
             </div>
@@ -54,7 +54,7 @@ export default function GuruForm(props) {
                     value={props.guru.skill_set}
                 />
             </div>
-            <div><button>Add a local Guru!</button></div>
+            <div><button>Update the local Guru!</button></div>
         </form>
     )
 }
