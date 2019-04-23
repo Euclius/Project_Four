@@ -39,8 +39,6 @@ export default class SupplierIndex extends Component {
 
         }
     }
-
-
     supplierCreate = () => {
         axios.post(`/api/v1/suppliers/`,
             this.state.newSupplier
@@ -60,7 +58,6 @@ export default class SupplierIndex extends Component {
             })
         })
     }
-
     handleChange = (e) => {
         const clonedNewSupplier = { ...this.state.newSupplier }
         if (e.target.type === 'checkbox') {
@@ -75,21 +72,18 @@ export default class SupplierIndex extends Component {
             newSupplier: clonedNewSupplier,
         })
     }
-
     handleSubmit = (e) => {
         e.preventDefault()
         this.supplierCreate()
     }
-
     render() {
         if (this.state.checked === true) { render (
         <Map
-        
+        handleChange={this.handleChange}
         />)}
         return (
             <div>
                 <div>supplier index page</div>
-                <button onClick={this.checkIt} >checkittttt</button>
                 <ul>
                     {
                         this.state.suppliers.map((supplier, i) => {

@@ -13,6 +13,8 @@ import ProductCreate from './components/ProductCreate.js'
 import GuruEdit from './components/GuruEdit.js'
 import SupplierEdit from './components/EditSupplier.js'
 import ProductEdit from './components/ProductEdit.js'
+import AddMap from './components/AddMap.js'
+import GoogleMap from './components/GoogleMap.js'
 
 const StyledLink = styled(Link)`
 text-decoration:none;
@@ -30,6 +32,8 @@ class App extends Component {
         <div className="App">
           <div>
             <h1>What's your favourite?!</h1>
+            <h4>Know any local gurus-- anyone who has savant skill in a particular field? You can also tell others where you can find them!</h4>
+            <h4>Know any great suppliers with great products? Share them also. </h4>
           </div>
           <Nav>
             <div>
@@ -55,6 +59,7 @@ class App extends Component {
             {/* create */}
             <Route exact path="/guruCreate" component={GuruCreate} />
             <Route exact path='/productCreate' component={ProductCreate} />
+            <Route exact path='/addMap' component={AddMap}/>
             {/* show */}
             <Route exact path='/gurus/:guruId' component={GuruShow} />
             <Route exact path='/products/:productId' component={ProductShow} />

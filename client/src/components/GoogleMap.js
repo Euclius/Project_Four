@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 class Map extends Component {
-state = {
-
-}
+    constructor(props) {
+        super(props);
+        this.scriptLoad = this.scriptLoad.bind(this)
+    }
 
   scriptLoad() {
     const map = new window.google.maps.Map(
@@ -17,7 +20,7 @@ state = {
     if (!window.google) {
       var s = document.createElement('script');
       s.type = 'text/javascript';
-      s.src = `https://maps.google.com/maps/api/js?key=AIzaSyDnZHCNVuYH8lZSMZtuHzJ4677eUi6AE8w`;
+      s.src = `https://maps.google.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`;
       var x = document.getElementsByTagName('script')[0];
       x.parentNode.insertBefore(s, x);
       s.addEventListener('load', e => {
@@ -30,7 +33,9 @@ state = {
 
   render() {
     return (
-      <div style={{ width: 500, height: 500 }} id={this.props.id} />
+        <div>
+      <div style={{ width: 500, height: 500 }} id={this.props.id}> </div>
+      </div>
     );
   }
 }

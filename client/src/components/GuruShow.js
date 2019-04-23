@@ -35,6 +35,7 @@ export default class GuruShow extends Component {
         return (
             <div>
                 <button> <Link to={`/gurus/${this.state.guru.id}/edit`}> Edit </Link>  </button>
+                <button> <Link to={`/addMap`}>Add A Location</Link></button>
                 <div key={this.state.guru.id}>
 
                     <div>Name: {this.state.guru.name}</div>

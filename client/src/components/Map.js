@@ -6,7 +6,6 @@ export default class Map extends Component {
 state = {
 
 }
-
   render() {
     return (
       <Map
@@ -26,5 +25,3 @@ state = {
     );
   }
 }
-
-render(<GoogleMap />, document.getElementById('root'));
