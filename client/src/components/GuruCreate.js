@@ -26,12 +26,11 @@ export default class GuruCreate extends Component {
             })
         }
         catch (error) {
-            console.log(error, 'error from get guru on guru show')
         }
     }
 
     createGuru = () => {
-        console.log(this.state.guru)
+
         axios.post(`/api/v1/gurus/`, this.state.guru).then((res) => {
             const guruList = [...this.state.gurus]
             guruList.unshift(res.data)
@@ -40,7 +39,7 @@ export default class GuruCreate extends Component {
     }
 
     handleChange = (e) => {
-        console.log(this.state.guru)
+
         const newGuru = { ...this.state.guru }
         if (e.target.type === 'checkbox') {
             this.setState({ checked: !this.state.checked })
@@ -48,7 +47,7 @@ export default class GuruCreate extends Component {
         } else {
             newGuru[e.target.name] = e.target.value
         }
-        console.log(newGuru)
+
         this.setState({ guru: newGuru })
     }
 

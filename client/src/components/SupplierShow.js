@@ -33,7 +33,6 @@ export default class SupplierShow extends Component {
                     })
                 })
         } 
-            console.log('at component did mount on suppliershow')
         
     }
 

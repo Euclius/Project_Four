@@ -33,8 +33,6 @@ export default class SupplierEdit extends Component {
             }
             )
 
-        console.log('at componentdidmount in edit suppleir')
-
     }
     supplierEdit = () => {
         const payload = this.state.supplier

@@ -32,7 +32,6 @@ export default class ProductIndex extends Component {
             })
         }
         catch (error) {
-            console.log(error, 'error from getProducts on Product Index')
         }
     }
 

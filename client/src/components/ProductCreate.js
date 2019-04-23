@@ -32,7 +32,7 @@ export default class ProductCreate extends Component {
             })
         }
         catch (error) {
-            console.log(error, 'error at getProduct on ProductCREATE')
+
         }
     }
 
@@ -45,29 +45,6 @@ export default class ProductCreate extends Component {
             this.setState({ redirectToHome: true, createdProduct: res.data })
         })
     }
-
-    // createProduct = async () => {
-    //     try {
-    //         const res = await axios.post(`/api/v1/products/`, this.state.product)
-    //         const productList = [...this.state.products]
-    //         productList.unshift(res.data)
-    //         this.setState({
-    //             products: productList,
-    //             product: {
-    //                 id: res.data.id,
-    //                 name: res.data.name,
-    //                 picture_url: res.data.picture_url,
-    //                 description: res.data.description,
-    //                 supplier: res.data.supplier
-    //             },
-    //             redirectToHome: true,
-    //             createdProduct: res.data
-    //         })
-    //     }
-    //     catch (error) {
-    //         console.log(error, 'mistake at createproduct on ProductCreate')
-    //     }
-    // }
 
     handleChange = (e) => {
         const newProduct = { ...this.state.product }

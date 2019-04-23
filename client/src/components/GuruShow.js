@@ -27,7 +27,7 @@ export default class GuruShow extends Component {
             })
         }
         catch (error) {
-            console.log(error, 'error from getGuru on GuruShow')
+
         }
     }
 

@@ -37,7 +37,7 @@ export default class GuruEdit extends Component {
         const payload = this.state.guru
         axios.put(`/api/v1/gurus/${this.props.match.params.guruId}/`, payload)
             .then((res) => {
-                console.log(res)
+
                 this.setState({
                     guru: {
                         id: res.data.id,
@@ -61,7 +61,7 @@ export default class GuruEdit extends Component {
         } else {
             guruEdit[e.target.name] = e.target.value
         }
-        console.log(guruEdit)
+
         this.setState({ guru: guruEdit })
     }
     guruDelete = () => {

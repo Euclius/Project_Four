@@ -25,7 +25,7 @@ export default class GuruIndex extends Component {
             })
         }
         catch (error) {
-            console.log(error, 'error from getGuru on guru index')
+ 
         }
     }
 

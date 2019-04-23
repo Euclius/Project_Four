@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function SupplierForm(props) {
-    console.log(props)
 
     return (
         

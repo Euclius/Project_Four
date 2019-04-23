@@ -3,6 +3,9 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import SupplierForm from './SupplierForm.js'
 import { Redirect } from 'react-router-dom'
+import GoogleMap from './GoogleMap.js'
+import Map from './Map.js'
+import {render} from 'react-dom'
 
 export default class SupplierIndex extends Component {
 
@@ -33,7 +36,7 @@ export default class SupplierIndex extends Component {
             })
         }
         catch (error) {
-            console.log(error, 'error from getSupplier on supplier index')
+
         }
     }
 
@@ -67,7 +70,7 @@ export default class SupplierIndex extends Component {
         else {
             clonedNewSupplier[e.target.name] = e.target.value
         }
-        console.log(clonedNewSupplier)
+
         this.setState({
             newSupplier: clonedNewSupplier,
         })
@@ -78,12 +81,11 @@ export default class SupplierIndex extends Component {
         this.supplierCreate()
     }
 
-    checkIt = () => {
-        console.log(this.state.newSupplier)
-    }
-
     render() {
-        if (this.state.checked === true) { }
+        if (this.state.checked === true) { render (
+        <Map
+        
+        />)}
         return (
             <div>
                 <div>supplier index page</div>
