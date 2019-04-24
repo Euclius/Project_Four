@@ -8,7 +8,7 @@ export default class SupplierShow extends Component {
         supplier: {
             supplierId: '',
             title: '',
-            location: '',
+            // location: '',
             description: '',
             photo_url: '',
             reason: ''
@@ -25,7 +25,7 @@ export default class SupplierShow extends Component {
                         supplier: {
                             id: res.data.id,
                             title: res.data.title,
-                            location: res.data.location,
+                            // location: res.data.location,
                             description: res.data.description,
                             photo_url: res.data.photo_url,
                             reason: res.data.reason
@@ -44,7 +44,7 @@ export default class SupplierShow extends Component {
                 <div key={this.state.supplier.id}>
 
                     <div>Title: {this.state.supplier.title}</div>
-                    <div>Location: {this.state.supplier.location}</div>
+                    {/* <div>Location: {this.state.supplier.location}</div> */}
                     <div>Description: {this.state.supplier.description}</div>
                     <div>Picture: {this.state.supplier.photo_url}</div>
                     <div>Reason: {this.state.supplier.reason}</div>
@@ -54,13 +54,3 @@ export default class SupplierShow extends Component {
         )
     }
 }
-
-    // showSpecificSupplier = () => {
-    //     const supplierId = this.props.match.params.supplierId
-    //     axios.get(`api/v1/suppliers/${supplierId}/`)
-    //         .then(res => {
-    //             this.setState({
-    //                 supplier: res.data
-    //             })
-    //         })
-    // }

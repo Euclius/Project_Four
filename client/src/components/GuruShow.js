@@ -26,7 +26,7 @@ export default class GuruShow extends Component {
                 guru: res.data
             })
         }
-        catch (error) {
+        catch (error) { console.log(guruId)
 
         }
     }
