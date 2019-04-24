@@ -1,5 +1,5 @@
 ## Final_Project
-This app is for posting your favourite suppliers, 
+This app is for posting your favourite suppliers, the local gurus you know, and your favourite products.
 
 ## ERD
 https://trello.com/c/lvYypE5G/22-erd
@@ -22,7 +22,7 @@ https://trello.com/c/4gjUt3QW/2-wireframe-with-photos
 6. psycopg2
 
 ## Scripts added on the Backend
-1. "dev"
+1. "build"
 2. "postinstall"
 
 ## Dependencies on the Frontend
@@ -40,4 +40,4 @@ https://trello.com/c/4gjUt3QW/2-wireframe-with-photos
 
 
 ## Version Two Desires
-My version three would have
+My version three would have more styling and on the api call to google, the marker would be able to be placed instead of just showing up at the graveyard tavern.
