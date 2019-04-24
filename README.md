@@ -2,13 +2,13 @@
 This app is for posting your favourite suppliers, 
 
 ## ERD
-https://trello.com/c/43i2mt0u/56-erd
+https://trello.com/c/lvYypE5G/22-erd
 
 ## Heroku
-https://safe-tundra-11511.herokuapp.com/
+https://favourite-app.herokuapp.com/
 
 ## Trello Board
-https://trello.com/b/JV4RM7q3/project-three
+https://trello.com/b/Gf13JOD3/projectfour
 
 ## WireFrame
 https://trello.com/c/4gjUt3QW/2-wireframe-with-photos
