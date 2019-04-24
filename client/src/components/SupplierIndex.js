@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import SupplierForm from './SupplierForm.js'
-import { Redirect } from 'react-router-dom'
-import GoogleMap from './GoogleMap.js'
 import Map from './Map.js'
 import {render} from 'react-dom'
 

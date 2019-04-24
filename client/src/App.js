@@ -14,7 +14,7 @@ import GuruEdit from './components/GuruEdit.js'
 import SupplierEdit from './components/EditSupplier.js'
 import ProductEdit from './components/ProductEdit.js'
 import AddMap from './components/AddMap.js'
-import GoogleMap from './components/GoogleMap.js'
+
 
 const StyledLink = styled(Link)`
 text-decoration:none;

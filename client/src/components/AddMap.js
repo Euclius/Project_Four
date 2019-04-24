@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+
 import GoogleMap from './GoogleMap.js'
-import Map from './Map.js'
-import MapInfoWindow from './MapInfoWindow.js'
+
 
 export default class AddMap extends Component {
     // constructor() {

@@ -8,7 +8,7 @@ export default class GuruShow extends Component {
             guruId: '',
             name: "",
             brief_description: "",
-            location: "",
+            // location: "",
             image_url: "",
             skill_set: ""
         }
@@ -39,7 +39,7 @@ export default class GuruShow extends Component {
                 <div key={this.state.guru.id}>
 
                     <div>Name: {this.state.guru.name}</div>
-                    <div>Location: {this.state.guru.location}</div>
+                    {/* <div>Location: {this.state.guru.location}</div> */}
                     <div>Description: {this.state.guru.brief_description}</div>
                     <div>Picture:<img src={`${this.state.guru.image_url}`} alt={this.state.guru.name}></img></div>
                     <div>SkillSet: {this.state.guru.skill_set}</div>
