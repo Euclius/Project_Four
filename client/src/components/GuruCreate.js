@@ -80,14 +80,14 @@ export default class GuruCreate extends Component {
                                 type="text"
                                 value={this.state.guru.brief_description} />
                         </div>
-                        {/* <div>
+                        <div>
                             <label htmlFor="location">Location:</label>
                             <input onChange={this.handleChange}
                                 name="location"
-                                type="checkbox"
+                                type="text"
                                 checked={this.state.checked}
                                 value={this.state.guru.location} />
-                        </div> */}
+                        </div>
                         <div>
                             <label htmlFor="image_url">Image:</label>
                             <input onChange={this.handleChange}

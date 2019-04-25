@@ -24,16 +24,16 @@ export default function GuruForm(props) {
                     value={props.guru.brief_description}
                 />
             </div>
-            {/* <div>
+            <div>
                 <label htmlFor="location">Location:</label>
                 <input
                     onChange={props.handleChange}
                     name="location"
                     id="location"
-                    type="checkbox"
+                    type="text"
                     value={props.guru.location}
                 />
-            </div> */}
+            </div>
             <div>
                 <label htmlFor="image_url">Image:</label>
                 <input

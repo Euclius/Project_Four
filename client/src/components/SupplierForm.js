@@ -15,16 +15,16 @@ export default function SupplierForm(props) {
                     onChange={props.handleChange}
                 />
             </div>
-            {/* <div>
+            <div>
                 <label htmlFor="location">Location:</label>
                 <input
-                    type="checkbox"
+                    type="text"
                     id="location"
                     name="location"
                     value={props.supplier.location}
                     onChange={props.handleChange}
                 />
-            </div> */}
+            </div>
             <div>
                 <label htmlFor="photo_url">Photo:</label>
                 <input
