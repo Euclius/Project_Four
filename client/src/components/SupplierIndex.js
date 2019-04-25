@@ -11,7 +11,7 @@ export default class SupplierIndex extends Component {
         suppliers: [],
         newSupplier: {
             title: '',
-            location: false,
+            location: '',
             description: '',
             photo_url: '',
             reason: ''

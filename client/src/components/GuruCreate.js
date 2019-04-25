@@ -9,7 +9,7 @@ export default class GuruCreate extends Component {
         guru: {
             name: '',
             brief_description: '',
-            location: false,
+            location: '',
             image_url: '',
             skill_set: ''
         },

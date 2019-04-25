@@ -9,7 +9,7 @@ export default class GuruEdit extends Component {
             id: '',
             name: '',
             brief_description: '',
-            location: false,
+            location: '',
             image_url: '',
             skill_set: ''
         },
