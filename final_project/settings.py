@@ -27,7 +27,7 @@ STATICFILES_DIRS = [
 SECRET_KEY = 'kz8k(v*i+yun+^4@xrwh%d7b#x6$u7$_2%iwalihon4scbq&mu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://favourite-app.herokuapp.com/']
 
@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'favourite_app',
-    'django-extensions',
 ]
 
 MIDDLEWARE = [
